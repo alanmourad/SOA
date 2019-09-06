@@ -1,0 +1,49 @@
+{
+  "swagger" : "2.0",
+  "schemes" : [ "https" ],
+  "host" : "api.postmon.com.br",
+  "basePath" : "/v1",
+  "info" : {
+    "version" : "1.0.0.0",
+    "title" : "POC REST",
+    "description" : "Consulta CEP",
+    "termsOfService" : "http://localhost:8085/bank-api/v1/termo-uso",
+    "contact" : {
+      "name" : "Alan Moura",
+      "url" : "http://localhost:8085/bank-api/v1/suporte",
+      "email" : "admoura@magnasistemas.com.br"
+    },
+    "license" : {
+      "name" : "MIT",
+      "url" : "http://opensource.org/licenses/MIT"
+    }
+  },
+  "consumes" : [ "application/json", "text/javascript" ],
+  "produces" : [ "application/json", "text/javascript" ],
+  "tags" : [ {
+    "name" : "cep"
+  } ],
+  "paths" : {
+    "/cep/{cep}" : {
+      "get" : {
+        "operationId" : "getCep",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve cep",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "cep",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    }
+  }
+}
