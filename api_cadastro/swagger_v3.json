@@ -1,0 +1,85 @@
+{
+  "swagger" : "2.0",
+  "schemes" : [ "http", "https" ],
+  "host" : "localhost:8085",
+  "basePath" : "/bytebank-api/v1",
+  "info" : {
+    "version" : "1.0.0.0",
+    "title" : "Bank-Api Magna Tutorial",
+    "description" : "Administra a movimentacao bancaria dos clientes",
+    "termsOfService" : "http://localhost:8085/bank-api/v1/termo-uso",
+    "contact" : {
+      "name" : "Alan Moura",
+      "url" : "http://localhost:8085/bank-api/v1/suporte",
+      "email" : "admoura@magnasistemas.com.br"
+    },
+    "license" : {
+      "name" : "MIT",
+      "url" : "http://opensource.org/licenses/MIT"
+    }
+  },
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "tags" : [ {
+    "name" : "Cliente"
+  }, {
+    "name" : "Conta"
+  }, {
+    "name" : "Extrato"
+  }, {
+    "name" : "Transacao"
+  } ],
+  "paths" : {
+    "/cliente" : {
+      "post" : {
+        "tags" : [ "Cliente" ],
+        "summary" : "Cadastra Cliente",
+        "description" : "Cadastra um novo cliente",
+        "operationId" : "cadastraCliente",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "cliente_",
+          "schema" : {
+            "$ref" : "#/definitions/Cliente"
+          }
+        } ],
+        "responses" : {
+          "400" : {
+            "description" : "Requisição inválida"
+          },
+          "500" : {
+            "description" : "Erro interno no servidor"
+          },
+          "201" : {
+            "description" : "Cliente Cadastrado com sucesso",
+            "schema" : {
+              "$ref" : "#/definitions/Cliente"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Cliente" : {
+      "type" : "object",
+      "properties" : {
+        "titular" : {
+          "type" : "string",
+          "example" : "Alan Moura"
+        },
+        "cpf" : {
+          "type" : "string",
+          "example" : 39876541565,
+          "maxLength" : 11,
+          "minLength" : 11
+        },
+        "senha" : {
+          "type" : "string",
+          "format" : "password",
+          "example" : "mudar@123"
+        }
+      }
+    }
+  }
+}
